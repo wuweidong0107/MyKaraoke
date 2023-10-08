@@ -16,13 +16,25 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    actionhandler.cpp \
+    currentstate.cpp \
+    karaokesong.cpp \
+    karaokewidget.cpp \
     main.cpp \
     mainwindow.cpp \
-    logger.cpp
+    logger.cpp \
+    songqueue.cpp \
+    songqueueitem.cpp
 
 HEADERS += \
+    actionhandler.h \
+    currentstate.h \
+    karaokesong.h \
+    karaokewidget.h \
     mainwindow.h \
-    logger.h
+    logger.h \
+    songqueue.h \
+    songqueueitem.h
 
 FORMS += \
     mainwindow.ui

@@ -3,19 +3,23 @@
 
 #include <QMainWindow>
 
-QT_BEGIN_NAMESPACE
-namespace Ui { class MainWindow; }
-QT_END_NAMESPACE
+#include "ui_mainwindow.h"
 
-class MainWindow : public QMainWindow
+class KaraokeWidget;
+
+class MainWindow : public QMainWindow, public Ui::MainWindow
 {
     Q_OBJECT
     
 public:
-    MainWindow(QWidget *parent = nullptr);
+    explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
+    void enqueueSong(const QString &fileName);
+        
+public slots:
+    void menuOpenKaraoke();
     
 private:
-    Ui::MainWindow *ui;
+    KaraokeWidget *m_widget;
 };
 #endif // MAINWINDOW_H

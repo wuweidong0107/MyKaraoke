@@ -1,15 +1,46 @@
-#include "mainwindow.h"
-#include "ui_mainwindow.h"
+#include <QFileDialog>
+#include <QDir>
 
-MainWindow::MainWindow(QWidget *parent)
-    : QMainWindow(parent)
-    , ui(new Ui::MainWindow)
+#include "mainwindow.h"
+#include "actionhandler.h"
+#include "logger.h"
+#include "songqueue.h"
+#include "currentstate.h"
+
+MainWindow::MainWindow(QWidget *parent) :
+    QMainWindow(parent), Ui::MainWindow()
 {
-    ui->setupUi(this);
+    setupUi(this);
+    
+    pCurrentState = new CurrentState( this );
+    
+    pActionHandler = new ActionHandler(this);
+    connect(actionPlay_file, &QAction::triggered, this, &MainWindow::menuOpenKaraoke);
+
+    pSongQueue = new SongQueue(this);
 }
 
 MainWindow::~MainWindow()
 {
-    delete ui;
+}
+
+void MainWindow::enqueueSong(const QString &fileName)
+{
+    if (fileName.isEmpty())
+        return;
+    
+    pActionHandler->enqueueSong("", fileName);
+}
+
+void MainWindow::menuOpenKaraoke()
+{
+    const QString file = QFileDialog::getOpenFileName(
+                0,
+                "Open File",
+                QDir::homePath(),
+                "*.*"
+                );
+
+    enqueueSong(file);
 }
 

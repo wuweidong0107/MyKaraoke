@@ -51,8 +51,6 @@ int main(int argc, char *argv[])
         const QRect resolution = a.screens()[displayNumber]->availableGeometry();
         p.data()->move(resolution.x(),resolution.y());
     }
-
-    MainWindow w;
-    w.show();
+    
     return a.exec();
 }
