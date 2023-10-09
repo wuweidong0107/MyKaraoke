@@ -19,5 +19,23 @@ void KaraokeWidget::playCurrent()
     
     if (current.state == SongQueueItem::STATE_READY) {
         KaraokeSong *karfile = new KaraokeSong(this, current);
+        if (!karfile->open()) {
+            delete karfile;
+            return;
+        }
+        
+        m_karaokeMutex.lock();
+    
+        if ( m_karaoke )
+        {
+            qWarning("BUG: new karaoke is started while the old is not stoppped!");
+            m_karaoke->stop();
+            delete m_karaoke;
+        }
+    
+        m_karaoke = karfile;
+        m_karaokeMutex.unlock();
+    
+        Logger::debug("KaraokeWidget: waiting for the song being loaded");
     }
 }

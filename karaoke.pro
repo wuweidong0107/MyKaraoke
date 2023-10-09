@@ -2,5 +2,6 @@
    error(Spivak requires Qt 5.4 or newer but Qt $$[QT_VERSION] was detected. Make sure you invoke proper qmake i.e. qmake-qt5 instead of qmake)
 }
 
-SUBDIRS += src
+SUBDIRS += libmediaplayer src
 TEMPLATE = subdirs
+

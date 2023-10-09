@@ -18,6 +18,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
     actionhandler.cpp \
     currentstate.cpp \
+    karaokeplayable.cpp \
     karaokesong.cpp \
     karaokewidget.cpp \
     main.cpp \
@@ -29,6 +30,7 @@ SOURCES += \
 HEADERS += \
     actionhandler.h \
     currentstate.h \
+    karaokeplayable.h \
     karaokesong.h \
     karaokewidget.h \
     mainwindow.h \
@@ -39,7 +41,15 @@ HEADERS += \
 FORMS += \
     mainwindow.ui
 
+INCLUDEPATH += $$PWD/../libmediaplayer/
+LIBS += -L$$OUT_PWD/../libmediaplayer/ -lmediaplayer
+
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
+
+unix:!mac:{
+   CONFIG += link_pkgconfig
+   PKGCONFIG += gstreamer-1.0 gstreamer-app-1.0
+}

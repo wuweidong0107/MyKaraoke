@@ -2,6 +2,9 @@
 #define KARAOKEWIDGET_H
 
 #include <QWidget>
+#include <QMutex>
+
+class KaraokeSong;
 
 class KaraokeWidget : public QWidget
 {
@@ -13,7 +16,10 @@ public slots:
     void playCurrent();
 
 signals:
-    
+
+private:
+    KaraokeSong *m_karaoke;
+    mutable QMutex m_karaokeMutex;    
 };
 
 #endif // KARAOKEWIDGET_H
