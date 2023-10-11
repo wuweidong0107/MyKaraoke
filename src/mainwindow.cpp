@@ -2,6 +2,7 @@
 #include <QDir>
 
 #include "mainwindow.h"
+#include "karaokewidget.h"
 #include "actionhandler.h"
 #include "logger.h"
 #include "songqueue.h"
@@ -17,6 +18,9 @@ MainWindow::MainWindow(QWidget *parent) :
     pActionHandler = new ActionHandler(this);
     connect(actionPlay_file, &QAction::triggered, this, &MainWindow::menuOpenKaraoke);
 
+    m_widget = new KaraokeWidget(this);
+    setCentralWidget(m_widget);
+    
     pSongQueue = new SongQueue(this);
 }
 

@@ -1,4 +1,5 @@
 #include "karaokeplayable.h"
+#include "karaokeplayable_file.h"
 
 KaraokePlayable::KaraokePlayable(const QString &baseFile, QTextCodec *filenameDecoder)
 {
@@ -22,4 +23,24 @@ bool KaraokePlayable::isVideoFile(const QString &filename)
     }
 
     return false;
+}
+
+KaraokePlayable *KaraokePlayable::create(const QString &baseFile, QTextCodec *filenameDecoder)
+{
+    KaraokePlayable* obj = nullptr;
+    obj = new KaraokePlayable_File(baseFile, filenameDecoder);
+    return obj;
+}
+
+bool KaraokePlayable::parse4Video()
+{
+    if (isVideoFile(m_baseFile))
+        m_musicObject = m_baseFile;
+    
+    return true;
+}
+
+QString KaraokePlayable::musicObject() const
+{
+    return m_musicObject;
 }

@@ -20,6 +20,7 @@
 #include <QPainter>
 #include <QFile>
 #include <QUrl>
+#include <QDebug>
 
 #include <gst/gst.h>
 
@@ -237,9 +238,12 @@ void MediaPlayer_GStreamer::drawVideoFrame(QPainter &p, const QRect &rect)
 {
     QMutexLocker m( &m_lastVideoSampleMutex );
 
+    qDebug()<<__FUNCTION__<<1;
     if ( !m_lastVideoSample )
         return;
 
+    qDebug()<<__FUNCTION__<<2;
+    
     // get the snapshot buffer format now. We set the caps on the appsink so
     // that it can only be an rgb buffer.
     GstCaps *caps = gst_sample_get_caps( m_lastVideoSample );
@@ -276,6 +280,7 @@ void MediaPlayer_GStreamer::drawVideoFrame(QPainter &p, const QRect &rect)
         return;
     }
 
+    qDebug()<<__FUNCTION__<<width<<height;
     p.drawImage( rect, QImage( map.data, width, height, GST_ROUND_UP_4 (width * 4), QImage::Format_RGB32 ), QRect( 0, 0, width, height ) );
 
     // And clean up

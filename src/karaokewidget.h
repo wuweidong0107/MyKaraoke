@@ -3,6 +3,7 @@
 
 #include <QWidget>
 #include <QMutex>
+#include "playerrenderer.h"
 
 class KaraokeSong;
 
@@ -14,12 +15,23 @@ public:
     
 public slots:
     void playCurrent();
+    void karaokeSongLoaded();
 
+protected:
+    void paintEvent(QPaintEvent *);
 signals:
 
 private:
-    KaraokeSong *m_karaoke;
-    mutable QMutex m_karaokeMutex;    
+    friend class PlayerRenderer;
+    
+    QImage* switchImages();
+    
+    KaraokeSong* m_karaoke;
+    mutable QMutex m_karaokeMutex;
+    PlayerRenderer* m_renderer;
+    QImage* m_images[2];
+    int m_drawImageIndex;
+    QMutex m_imageMutex;
 };
 
 #endif // KARAOKEWIDGET_H

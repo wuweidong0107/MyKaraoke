@@ -6,6 +6,7 @@
 
 class KaraokeWidget;
 class MediaPlayer_GStreamer;
+class KaraokePainter;
 
 class KaraokeSong : public QObject
 {
@@ -16,9 +17,16 @@ public:
     
     bool open();
     void stop();
-
+    qint64 draw(KaraokePainter& p);
+    
+public slots:
+    void start();
+    
 signals:
     
+private slots:
+    void songLoaded();
+
 private:
     KaraokeWidget *m_widget;
     SongQueueItem m_song;

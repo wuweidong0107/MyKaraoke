@@ -18,23 +18,29 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
     actionhandler.cpp \
     currentstate.cpp \
+    karaokepainter.cpp \
     karaokeplayable.cpp \
+    karaokeplayable_file.cpp \
     karaokesong.cpp \
     karaokewidget.cpp \
     main.cpp \
     mainwindow.cpp \
     logger.cpp \
+    playerrenderer.cpp \
     songqueue.cpp \
     songqueueitem.cpp
 
 HEADERS += \
     actionhandler.h \
     currentstate.h \
+    karaokepainter.h \
     karaokeplayable.h \
+    karaokeplayable_file.h \
     karaokesong.h \
     karaokewidget.h \
     mainwindow.h \
     logger.h \
+    playerrenderer.h \
     songqueue.h \
     songqueueitem.h
 

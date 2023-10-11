@@ -23,8 +23,7 @@ void Logger::add( const char * type, const char *str)
 
     QMutexLocker m( &m_logMutex );
 
-    if ( m_logfile.isOpen() )
-    {
+    if (m_logfile.isOpen()) {
         QDateTime now = QDateTime::currentDateTime();
         QString prefix = QString("%1 %2 ") .arg( now.toString( "yyyy-MM-dd hh:mm:ss" )) .arg(type);
         m_logfile.write( qPrintable(prefix) );
@@ -44,7 +43,7 @@ bool Logger::init()
 
     Q_FOREACH( const QString& path, paths )
     {
-        QString logpath = path + QDir::separator() + "spivakplayer.log";
+        QString logpath = path + QDir::separator() + "karaoke.log";
 
         pLogger->m_logfile.setFileName( logpath );
 
